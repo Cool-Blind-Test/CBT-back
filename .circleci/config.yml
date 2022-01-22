@@ -14,6 +14,7 @@ jobs:
     steps:
       - node/install:
           install-yarn: true
+      - run: cd ./app
       - run:
           name: Installing Yarn dependancies
           command : |
