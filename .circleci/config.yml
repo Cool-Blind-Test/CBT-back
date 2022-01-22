@@ -8,16 +8,18 @@ orbs:
   node: circleci/node@5.0.0
 
 jobs:
-  build:
+  install:
     docker:
       - image: cimg/base:stable
     steps:
       - node/install:
-          install-yarn: true
+          install-yarn: true 
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   example-job-workflow:
     jobs:
-      - build
+      - install
+      - node/run:
+          yarn-run: build
