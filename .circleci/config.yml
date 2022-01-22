@@ -4,23 +4,33 @@ version: 2.1
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
+orbs:
+  node: circleci/node@5.0.0
+
 jobs:
-  say-hello:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
+  run_tests:
     docker:
       - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
+      - node/install:
+          install-yarn: true
       - checkout
       - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
+          name: Installing Yarn dependancies
+          command : |
+            yarn
+      - run:
+          name: Run tests
+          command : |
+            yarn run test
+      - store_test_results:
+          path: test-results
+      - store_artifacts:
+          path: test-results
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  say-hello-workflow:
+  example-job-workflow:
     jobs:
-      - say-hello
+      - run_tests
