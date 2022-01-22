@@ -13,7 +13,8 @@ jobs:
       # replace with your preferred image
       - image: cimg/base:stable
     steps:
-      - node/install-yarn
+      - node/install:
+          install-yarn: true 
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
