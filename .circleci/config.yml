@@ -22,3 +22,5 @@ workflows:
   example-job-workflow:
     jobs:
       - example-job
+      - node/run:
+            yarn-run: test 
