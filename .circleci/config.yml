@@ -23,7 +23,7 @@ jobs:
           name: Run tests
           command : |
             mkdir /tmp/tests/;
-            yarn run test > /tmp/tests/testresult;
+            yarn run test:cov > /tmp/tests/testresult;
       - store_artifacts:
           path: /tmp/tests/
           destination: testresult
