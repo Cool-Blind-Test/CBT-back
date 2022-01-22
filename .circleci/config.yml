@@ -10,7 +10,7 @@ orbs:
 jobs:
   run_tests:
     docker:
-      - image: cimg/node:stable
+      - image: cimg/base:stable
     steps:
       - node/install:
           install-yarn: true
@@ -21,7 +21,7 @@ jobs:
       - run:
           name: Run tests
           command : |
-            yarn test
+            yarn run test
       - store_test_results:
           path: test-results
       - store_artifacts:
