@@ -10,7 +10,7 @@ orbs:
 jobs:
   run_tests:
     docker:
-      - image: cimg/node:stable
+      - image: circleci/node:stable
     steps:
       - node/install:
           install-yarn: true
