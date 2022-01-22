@@ -8,19 +8,21 @@ orbs:
   node: circleci/node@5.0.0
 
 jobs:
-  install:
+  run_tests:
     docker:
-      - image: cimg/base:stable
+      - image: cimg/node:stable
     steps:
       - node/install:
           install-yarn: true
-      - node/install-packages:
-          pkg-manager: yarn
-          app-dir: ./ 
+      - checkout
+      - run:
+          name: Installing Yarn dependancies
+          command : |
+            yarn
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   example-job-workflow:
     jobs:
-      - install
+      - run_tests
