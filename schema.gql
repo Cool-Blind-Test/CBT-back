@@ -5,25 +5,67 @@
 type User {
   id: ID!
 
-  """first name of the user"""
-  firstName: String!
+  """Username of the user"""
+  username: String!
 
-  """last name of the user"""
-  lastName: String!
-
-  """email of the user"""
+  """Email of the user"""
   email: String!
+
+  """Anilist username of the user"""
+  anilist: String!
+
+  """Path to avatar's user"""
+  avatar: String!
+
+  """Is use valid and/or authorized to auth"""
+  isValid: Boolean!
+
+  """Creation date of the user"""
+  dateCreation: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Music {
+  id: ID!
+
+  """Name of the music"""
+  name: String!
+
+  """Path of the file"""
+  file: String!
+}
+
+type Playlist {
+  id: ID!
+
+  """Name of the playlist"""
+  name: String!
+
+  """Number of times a playlist has been played"""
+  gameCount: Int!
 }
 
 type Query {
   users: [User!]!
   user(id: Int!): User!
+  music(id: Int!): Music!
+  playlist(id: Int!): Playlist!
 }
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: Int!): User!
+  createMusic(createMusicInput: CreateMusicInput!): Music!
+  updateMusic(updateMusicInput: UpdateMusicInput!): Music!
+  removeMusic(id: Int!): Music!
+  createPlaylist(createPlaylistInput: CreatePlaylistInput!): Playlist!
+  updatePlaylist(updatePlaylistInput: UpdatePlaylistInput!): Playlist!
+  removePlaylist(id: Int!): Playlist!
 }
 
 input CreateUserInput {
@@ -46,5 +88,27 @@ input UpdateUserInput {
 
   """email of the user"""
   email: String
+  id: Int!
+}
+
+input CreateMusicInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateMusicInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreatePlaylistInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdatePlaylistInput {
+  """Example field (placeholder)"""
+  exampleField: Int
   id: Int!
 }

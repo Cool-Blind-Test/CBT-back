@@ -1,22 +1,39 @@
 import { ObjectType, Field, ID } from '@nestjs/graphql';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { IsEmail } from 'class-validator';
+import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm';
 
 @ObjectType()
 @Entity()
 export class User {
+  @Column()
   @Field(() => ID)
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  @Field(() => String, { description: 'first name of the user' })
-  firstName: string;
+  @Column({ unique: true })
+  @Field(() => String, { description: 'Username of the user' })
+  username: string;
 
   @Column()
-  @Field(() => String, { description: 'last name of the user' })
-  lastName: string;
-
-  @Column()
-  @Field(() => String, { description: 'email of the user' })
+  @Field(() => String, { description: 'Email of the user' })
+  @IsEmail()
   email: string;
+
+  @Column()
+  @Field(() => String, { description: 'Anilist username of the user' })
+  anilist: string;
+
+  @Column()
+  @Field(() => String, { description: "Path to avatar's user" })
+  avatar: string;
+
+  @Column()
+  @Field(() => Boolean, {
+    description: 'Is use valid and/or authorized to auth',
+  })
+  isValid: boolean;
+
+  @Column()
+  @Field(() => Date, { description: 'Creation date of the user' })
+  dateCreation: Date;
 }
