@@ -15,6 +15,10 @@ export class User {
   username: string;
 
   @Column()
+  @Field(() => String, { description: "User's password" })
+  password: string;
+
+  @Column()
   @Field(() => String, { description: 'Email of the user' })
   @IsEmail()
   email: string;
@@ -33,7 +37,11 @@ export class User {
   })
   isValid: boolean;
 
-  @Column()
+  @Column({ default: () => 'CURRENT_TIMESTAMP' })
   @Field(() => Date, { description: 'Creation date of the user' })
   dateCreation: Date;
+
+  @Column()
+  @Field(() => String, { description: "User's role" })
+  role: string;
 }

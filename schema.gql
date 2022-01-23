@@ -8,6 +8,9 @@ type User {
   """Username of the user"""
   username: String!
 
+  """User's password"""
+  password: String!
+
   """Email of the user"""
   email: String!
 
@@ -22,6 +25,9 @@ type User {
 
   """Creation date of the user"""
   dateCreation: DateTime!
+
+  """User's role"""
+  role: String!
 }
 
 """
@@ -49,11 +55,54 @@ type Playlist {
   gameCount: Int!
 }
 
+type UserGame {
+  userId: ID!
+  gameID: ID!
+
+  """The score of the player in the game"""
+  score: Int!
+
+  """Has the player won this game ?"""
+  isWon: Boolean!
+}
+
+type Game {
+  id: ID!
+
+  """The name of the game"""
+  name: String!
+
+  """How many round should be played"""
+  rounds: Int!
+
+  """How many round have been played"""
+  progression: Int!
+}
+
+type Round {
+  id: ID!
+
+  """Order of the round"""
+  Order: Int!
+}
+
+type Keyword {
+  id: ID!
+
+  """Keyword name"""
+  name: String!
+}
+
 type Query {
   users: [User!]!
   user(id: Int!): User!
   music(id: Int!): Music!
   playlist(id: Int!): Playlist!
+  userGame(id: Int!): UserGame!
+  game(id: Int!): Game!
+  round(id: Int!): Round!
+  keywords: [Keyword!]!
+  keyword(id: Int!): Keyword!
 }
 
 type Mutation {
@@ -66,6 +115,18 @@ type Mutation {
   createPlaylist(createPlaylistInput: CreatePlaylistInput!): Playlist!
   updatePlaylist(updatePlaylistInput: UpdatePlaylistInput!): Playlist!
   removePlaylist(id: Int!): Playlist!
+  createUserGame(createUserGameInput: CreateUserGameInput!): UserGame!
+  updateUserGame(updateUserGameInput: UpdateUserGameInput!): UserGame!
+  removeUserGame(id: Int!): UserGame!
+  createGame(createGameInput: CreateGameInput!): Game!
+  updateGame(updateGameInput: UpdateGameInput!): Game!
+  removeGame(id: Int!): Game!
+  createRound(createRoundInput: CreateRoundInput!): Round!
+  updateRound(updateRoundInput: UpdateRoundInput!): Round!
+  removeRound(id: Int!): Round!
+  createKeyword(createKeywordInput: CreateKeywordInput!): Keyword!
+  updateKeyword(updateKeywordInput: UpdateKeywordInput!): Keyword!
+  removeKeyword(id: Int!): Keyword!
 }
 
 input CreateUserInput {
@@ -108,6 +169,50 @@ input CreatePlaylistInput {
 }
 
 input UpdatePlaylistInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateUserGameInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateUserGameInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateGameInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateGameInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateRoundInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateRoundInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateKeywordInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateKeywordInput {
   """Example field (placeholder)"""
   exampleField: Int
   id: Int!

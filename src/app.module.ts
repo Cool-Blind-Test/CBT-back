@@ -6,6 +6,10 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { MusicModule } from './music/music.module';
 import { PlaylistModule } from './playlist/playlist.module';
+import { UserGameModule } from './user-game/user-game.module';
+import { GameModule } from './game/game.module';
+import { RoundModule } from './round/round.module';
+import { KeywordsModule } from './keywords/keywords.module';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
@@ -30,6 +34,10 @@ dotenv.config();
     UsersModule,
     MusicModule,
     PlaylistModule,
+    UserGameModule,
+    GameModule,
+    RoundModule,
+    KeywordsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
