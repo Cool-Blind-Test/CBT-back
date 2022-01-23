@@ -1,6 +1,16 @@
 import { ObjectType, Field, ID } from '@nestjs/graphql';
 import { IsEmail } from 'class-validator';
-import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm';
+import { Playlist } from 'src/playlist/entities/playlist.entity';
+import { Round } from 'src/round/entities/round.entity';
+import { UserGame } from 'src/user-game/entities/user-game.entity';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  Unique,
+} from 'typeorm';
 
 @ObjectType()
 @Entity()
@@ -9,6 +19,12 @@ export class User {
   @Field(() => ID)
   @PrimaryGeneratedColumn()
   id: number;
+
+  @OneToMany(() => UserGame, (UserGame) => UserGame.user)
+  userGames: UserGame[];
+
+  @OneToMany(() => Playlist, (Playlist) => Playlist.author)
+  playlist: Playlist[];
 
   @Column({ unique: true })
   @Field(() => String, { description: 'Username of the user' })
@@ -24,8 +40,11 @@ export class User {
   email: string;
 
   @Column()
-  @Field(() => String, { description: 'Anilist username of the user' })
-  anilist: string;
+  @Field(() => String, {
+    description: 'Anilist username of the user',
+    nullable: true,
+  })
+  anilist?: string;
 
   @Column()
   @Field(() => String, { description: "Path to avatar's user" })

@@ -2,6 +2,61 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Music {
+  id: ID!
+
+  """Name of the music"""
+  name: String!
+
+  """Path of the file"""
+  file: String!
+}
+
+type UserGame {
+  id: ID!
+  gameID: ID!
+
+  """The score of the player in the game"""
+  score: Int!
+
+  """Has the player won this game ?"""
+  isWon: Boolean!
+}
+
+type Round {
+  id: ID!
+
+  """Order of the round"""
+  Order: Int!
+}
+
+type Game {
+  id: ID!
+
+  """The name of the game"""
+  name: String!
+
+  """How many round have been played"""
+  progression: Int!
+}
+
+type Keyword {
+  id: ID!
+
+  """Keyword name"""
+  name: String!
+}
+
+type Playlist {
+  id: ID!
+
+  """Name of the playlist"""
+  name: String!
+
+  """Number of times a playlist has been played"""
+  gameCount: Int!
+}
+
 type User {
   id: ID!
 
@@ -15,7 +70,7 @@ type User {
   email: String!
 
   """Anilist username of the user"""
-  anilist: String!
+  anilist: String
 
   """Path to avatar's user"""
   avatar: String!
@@ -34,64 +89,6 @@ type User {
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
-
-type Music {
-  id: ID!
-
-  """Name of the music"""
-  name: String!
-
-  """Path of the file"""
-  file: String!
-}
-
-type Playlist {
-  id: ID!
-
-  """Name of the playlist"""
-  name: String!
-
-  """Number of times a playlist has been played"""
-  gameCount: Int!
-}
-
-type UserGame {
-  userId: ID!
-  gameID: ID!
-
-  """The score of the player in the game"""
-  score: Int!
-
-  """Has the player won this game ?"""
-  isWon: Boolean!
-}
-
-type Game {
-  id: ID!
-
-  """The name of the game"""
-  name: String!
-
-  """How many round should be played"""
-  rounds: Int!
-
-  """How many round have been played"""
-  progression: Int!
-}
-
-type Round {
-  id: ID!
-
-  """Order of the round"""
-  Order: Int!
-}
-
-type Keyword {
-  id: ID!
-
-  """Keyword name"""
-  name: String!
-}
 
 type Query {
   users: [User!]!
